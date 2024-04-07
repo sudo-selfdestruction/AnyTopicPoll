@@ -24,6 +24,9 @@ public class Poll {
     @Column(name = "date")
     private LocalDate date;
 
+    @Column(name = "option_amount")
+    private Integer optionAmount;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
