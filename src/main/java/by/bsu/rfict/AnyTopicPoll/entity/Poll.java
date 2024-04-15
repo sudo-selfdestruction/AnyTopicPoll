@@ -27,6 +27,9 @@ public class Poll {
     @Column(name = "option_amount")
     private Integer optionAmount;
 
+    @Column(name = "votedCounter")
+    private Integer votedCounter;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

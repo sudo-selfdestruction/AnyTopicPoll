@@ -17,6 +17,9 @@ public class Option {
     @Column(name = "option_text")
     private String optionText;
 
+    @Column(name = "option_voted_counter")
+    private Integer optionVotedCounter;
+
     @ManyToOne
     @JoinColumn(name = "poll_id")
     private Poll poll;

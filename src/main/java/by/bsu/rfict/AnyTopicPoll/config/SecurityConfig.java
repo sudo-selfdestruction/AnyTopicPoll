@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .disable()
                 .authorizeRequests()
                 .requestMatchers("/user/sign-up", "/user/login", "/item", "/item/{id}", "/", "/swagger-ui/index.html#/").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .httpBasic();
         return http.build();
