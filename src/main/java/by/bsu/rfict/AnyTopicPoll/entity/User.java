@@ -1,6 +1,9 @@
 package by.bsu.rfict.AnyTopicPoll.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -9,6 +12,8 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "user")
+@AllArgsConstructor
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +44,7 @@ public class User {
     @Column(name = "country")
     private String country;
 
+    @JsonIgnore
     @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
     private List<Poll> pollList;
 
@@ -50,4 +56,6 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> userRolesList;
+
+    public User() {}
 }

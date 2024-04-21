@@ -1,13 +1,18 @@
 package by.bsu.rfict.AnyTopicPoll.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
 
 @Entity
 @Data
+@Builder
 @Table(name = "poll_option")
+@AllArgsConstructor
 public class Option {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,10 +25,12 @@ public class Option {
     @Column(name = "option_voted_counter")
     private Integer optionVotedCounter;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "poll_id")
     private Poll poll;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "option_user",
@@ -31,4 +38,6 @@ public class Option {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private List<User> userList;
+
+    public Option() {}
 }
