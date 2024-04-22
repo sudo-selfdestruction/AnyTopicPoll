@@ -35,6 +35,7 @@ public class PollController {
     @PostMapping("/polls/create")
     public PollDto createPoll(@RequestBody PollDto pollDto) {
         Poll poll = pollMapper.toPoll(pollDto);
+        pollService.createPoll(poll);
         return pollDto;
     }
 

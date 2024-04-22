@@ -26,7 +26,7 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public User registerUser(User user) {
-        Role roleUser = roleRepository.findRoleByName("USER");
+        Role roleUser = roleRepository.findRoleByName("RESPONDENT");
         List<Role> roleList = new ArrayList<>();
         roleList.add(roleUser);
 
