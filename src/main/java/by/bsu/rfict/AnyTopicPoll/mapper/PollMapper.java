@@ -19,6 +19,7 @@ public class PollMapper {
 
     public PollDto toPollDto(Poll poll) {
         return PollDto.builder().
+                id(poll.getId()).
                 name(poll.getName()).
                 description(poll.getDescription()).
                 date(poll.getDate()).

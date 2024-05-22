@@ -58,4 +58,9 @@ public class User {
     private List<Role> userRolesList;
 
     public User() {}
+
+    @Override
+    public String toString() {
+        return "username: " + username + "\npassword: " + password;
+    }
 }

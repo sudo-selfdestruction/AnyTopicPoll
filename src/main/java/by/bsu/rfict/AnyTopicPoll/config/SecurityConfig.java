@@ -26,9 +26,10 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .requestMatchers("/sign-up", "/login", "/", "/swagger-ui/index.html#/").permitAll()
+                .requestMatchers("/sign-up", "/login", "/swagger-ui/index.html#/").permitAll()
                 .requestMatchers("/admin").hasRole("ADMIN")
-                .requestMatchers("/polls/create").hasRole("AUTHOR")
+                .requestMatchers("/polls/create", "polls/{id}").permitAll()
+                .requestMatchers("/polls").hasRole("RESPONDENT")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

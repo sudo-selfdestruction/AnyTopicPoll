@@ -14,21 +14,22 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
-        // Разрешаем запросы из любого источника и разрешаем передавать заголовки "Authorization"
-        config.addAllowedOrigin("*");
-        config.addAllowedHeader("*");
+        // Разрешаем запросы только с http://localhost:3000
+        config.addAllowedOrigin("http://localhost:3000");
 
-        // Разрешаем методы GET, POST, PUT, DELETE, OPTIONS
-        config.addAllowedMethod("GET");
-        config.addAllowedMethod("POST");
-        config.addAllowedMethod("PUT");
-        config.addAllowedMethod("DELETE");
-        config.addAllowedMethod("OPTIONS");
+        // Разрешаем передавать заголовки "Authorization" и "Content-Type"
+        config.addAllowedHeader("Authorization");
+        config.addAllowedHeader("Content-Type");
+        config.addAllowedHeader("Cookie");
+
+        // Разрешаем все HTTP-методы
+        config.addAllowedMethod("*");
 
         // Устанавливаем максимальное время (в секундах) для кэширования предзапроса CORS
         config.setMaxAge(3600L);
 
         source.registerCorsConfiguration("/**", config);
+        config.setAllowCredentials(true);
 
         return new CorsFilter(source);
     }

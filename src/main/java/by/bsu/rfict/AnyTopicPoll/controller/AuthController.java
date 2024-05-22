@@ -7,8 +7,8 @@ import by.bsu.rfict.AnyTopicPoll.mapper.UserMapper;
 import by.bsu.rfict.AnyTopicPoll.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,11 +25,16 @@ public class AuthController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("/login")
-    public User loginUser(@RequestBody LoginRequestDto loginDto) {
+    public LoginRequestDto loginUser(@RequestBody LoginRequestDto loginDto) {
         String username = loginDto.getUsername();
         User user = userService.findByUsername(username);
-        log.info("login - user : {} successfully login", user);
-        return user;
+
+        if (user != null && bCryptPasswordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
+            log.info("login - user : {} successfully login", user);
+            return loginDto;
+        } else {
+            throw null;
+        }
     }
 
     @PostMapping("/sign-up")

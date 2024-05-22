@@ -20,5 +20,8 @@ public class ParticipationKeeper {
     @Column(name = "user_id")
     private Long userId;
 
+    @Column(name = "option_id")
+    private Long optionId;
+
     public ParticipationKeeper() {}
 }

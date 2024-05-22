@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PollDto {
+    private Long id;
     private String name;
     private String description;
     private LocalDate date;
